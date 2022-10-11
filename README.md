@@ -1,4 +1,3 @@
-# ab_test
 # Data Challenge
 A business question we ran into
 
