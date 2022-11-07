@@ -43,183 +43,182 @@
 
 \begin{document}
 
+\section{Introduction}
 \frame{\frametitle{ }
 \titlepage
 \thispagestyle{empty}
 }
 
+\subsection{}
 \frame{\frametitle{Overview}
 \begin{itemize}
     \item A/B test conducted during the month January, 2019
-    \item Sample size 743 ($\approxeq$ 24 individuals per day)
-    \item Results suggest no effect of treatment on outcomes
+    \item Data are aggregated by treatment (2), days (31), and device (3)
+    \item Total sample size 3.681.827 sessions (50/50 split)
+    \item Results suggest:
+    \begin{itemize}
+        \item Small $+$ effect on conversion rate (n.s.)
+        \item Small $-$ effect on revenues
+        \item Suggests increase CR is result of cheaper purchases
+        \item Effects are most visible on mobile users 
+    \end{itemize}
 \end{itemize}
 }
 
-\frame{\frametitle{A/B test sample}
-Size = 743 (even split by treatment)
+\section{Aggregate}
+\frame{\frametitle{Looking at the data} 
+
+Q: Why do revenues have decimal places?  Is this in thousands?
+\begin{table}[!h]
+    \caption{}
+    \begin{center}
+    \resizebox{\textwidth}{!}{\input{../tables/data_frame.tex}}
+    \label{table_data_frame}
+    \end{center}
+\end{table}
+}
+
+\subsection{}
+\frame{\frametitle{Aggregate totals by treatment group}
+
+Values look similar by treatment group
 
 \begin{figure}
-    \caption{Treatment}
-    \resizebox{\textwidth}{!}{\includegraphics{../graphs/plot_treatment.pdf}}
-    \label{plot_treatment}
+    \caption{}
+    \resizebox{\textwidth}{!}{\includegraphics{../graphs/graph_values.pdf}}
+    \label{graph_values}
 \end{figure}
 }
 
-\frame{\frametitle{Time period}
-One month, January 2019
+\subsection{}
+\frame{\frametitle{Aggregate totals by treatment group and device}
 
-$\approxeq$ 12 individuals per day
+Small differences are visible in revenues and transactions, by device category
+
 \begin{figure}
-    \caption{Treatment by date}
-    \resizebox{\textwidth}{!}{\includegraphics{../graphs/plot_treatment_date.pdf}}
-    \label{plot_treatment_date}
+    \caption{}
+    \resizebox{\textwidth}{!}{\includegraphics{../graphs/graph_values_device.pdf}}
+    \label{graph_values_device}
 \end{figure}
 }
 
-\frame{\frametitle{Descriptives - numerical variable}
-No difference between treatment and control
+\subsection{}
+\frame{\frametitle{Aggregate totals by treatment group and time}
+
+General decline over time (as expected after December highs)
+
+Small differences are visible in revenues and transactions
+
 
 \begin{figure}
-    \caption{Numerical variables by treatment}
-    \resizebox{\textwidth}{!}{\includegraphics{../graphs/plot_numerical.pdf}}
-    \label{plot_numerical}
+    \caption{}
+    \resizebox{\textwidth}{!}{\includegraphics{../graphs/graph_values_time.pdf}}
+    \label{graph_values_time}
 \end{figure}
 }
 
-\frame{\frametitle{Descriptives - categorical variable}
-No difference between treatment and control
+\section{Differences}
+\frame{\frametitle{Effect of treatment group}
+
++ 0.61\% on transactions
+
+Decline in all other variables
 
 \begin{figure}
-    \caption{Categorical variable (device) by treatment}
-    \resizebox{\textwidth}{!}{\includegraphics{../graphs/plot_categorical.pdf}}
-    \label{plot_category}
-\end{figure}
-}
-
-\frame{\frametitle{Descriptives - crosstab numerical and control}
-Difference between devices
-\begin{itemize}
-    \item Mobile has higher pageviews, uniqeviews, and sessions
-    \item Tablet has lower revenues and transactions
-    \item Desktop has slightly higher revenues than mobiles
-\end{itemize}
-
-But, no difference between treatment and control
-
-\begin{figure}
-    \caption{Numerical variables by device and treatment}
-    \resizebox{\textwidth}{!}{\includegraphics{../graphs/plot_interaction_twoway.pdf}}
-    \label{plot_interaction_twoway}
-\end{figure}
-}
-
-\frame{\frametitle{What about a new variable?}
-Avg. revenue per transaction = revenue/transaction
-
-Among tablet users, treatment appears to reduce outliers, but not average
-
-\begin{figure}
-    \caption{Average revenue per transaction by device and treatment}
-    \resizebox{\textwidth}{!}{\includegraphics{../graphs/plot_new.pdf}}
-    \label{plot_new}
+    \caption{}
+    \vskip -5mm
+    \resizebox{\textwidth}{!}{\includegraphics{../graphs/graph_diff.pdf}}
+    \label{graph_diff}
 \end{figure}
 }
 
 
-\frame{\frametitle{Time trends}
+\subsection{}
+\frame{\frametitle{Understanding differences by treatment group and device}
 
-Variables are declining over time by device category
-
-No difference trends over time by treatment
+Effect is always positive among desktop users
+Among mobile users, transactions are higher (but revenues lower)
 
 \begin{figure}
-    \caption{Numerical variables over time by device and treatment}
-    \resizebox{\textwidth}{!}{\includegraphics{../graphs/plot_time_trend.pdf}}
-    \label{plot_time_trend}
+    \caption{}
+    \vskip -5mm
+    \resizebox{\textwidth}{!}{\includegraphics{../graphs/graph_diff_device.pdf}}
+    \label{graph_diff_device}
 \end{figure}
 }
 
-% \frame{\frametitle{Pystout} 
+\subsection{}
+\frame{\frametitle{Understanding differences by treatment group and time}
 
-%     \begin{table}[!h]
-%     \caption{Parameter estimates of effect of device and treatment on outcomes}
-%         \begin{center}
-%             \resizebox{.75\textwidth}{!}{\input{../tables/test_table.tex}}
-%             \label{test_table.tex}
-%         \end{center}
-%     \end{table}
-% }
+Mixed effect of treatment over time
 
-\frame{\frametitle{Regressions} 
-Model 0 only has main effect of device category and treatment
+Transactions are positive (except week 2)
 
-Model 1 adds an interaction between device category and treatment
+In week 3, revenues are really negative 
 
-Regression models confirm descriptive statistics
-
-There is a main effect of Device category, but no effect of treatment 
-
-
-    \begin{table}[!h]
-    \caption{Parameter estimates of effect of device and treatment on outcomes}
-        \begin{center}
-            \resizebox{\textwidth}{!}{\input{../tables/table_regression.tex}}
-            \label{table_regression.tex}
-        \end{center}
-    \end{table}
+\begin{figure}
+    \caption{}
+    \vskip -5mm
+    \resizebox{\textwidth}{!}{\includegraphics{../graphs/graph_diff_time.pdf}}
+    \label{graph_diff_time}
+\end{figure}
 }
 
-\frame{\frametitle{Regressions} 
-Model 2 adds main effect of date
+\section{CR}
+\frame{\frametitle{Effect of treatment on conversion rate (CR)}
 
-Model 3 adds an interaction with date
+conversion rate (CR) = transactions/sessions
 
-Regression models confirm descriptive statistics (declining trends)
+Small positive effect (+0.007 or 1.4\%), but not significant
 
-Tablets trends are still negative: interaction with date $<$ main effect
+To achieve significance, we need 9.284.592 sessions (i.e. 4 more  months)
 
-    \begin{table}[!h]
-    \caption{Parameter estimates of effect of device and treatment on outcomes}
-        \begin{center}
-            \resizebox{\textwidth}{!}{\input{../tables/table_regression_date.tex}}
-            \label{table_regression_date.tex}
-        \end{center}
-    \end{table}
+\begin{figure}
+    \caption{}
+    \vskip -5mm
+    \resizebox{\textwidth}{!}{\includegraphics{../graphs/graph_cr.pdf}}
+    \label{graph_cr}
+\end{figure}
 }
 
-\frame{\frametitle{Questions}
-\begin{itemize}
-\item What conclusions do you have?
-\begin{itemize}
-    \item The experiment suggests little effect of treatment on outcome variables
-    \item Whatever treatment effect exists is smaller than device category
-\end{itemize}
-\item What does this mean for us and our test?
-\begin{itemize}
-    \item The treatment has no effect, or \dots
-    \item The treatment is too small to have an effect
-\end{itemize}
-\item What should we do and how should we proceed?
-\begin{itemize}
-    \item Examine alternative outcome variables
-    \item Examine differences by demographic groups
-\end{itemize}
-\item Is there anything specific with regards to device categories?
-\begin{itemize}
-    \item Mobile has highest pageviews, uniqueviews, and sessions
-    \item Tablet has lowest revenues and transactions
-    \item Desktop has slightly higher revenues than mobiles (but not sig.)
-\end{itemize}
-\item Any other things you noticed or found interesting?
-\begin{itemize}
-    \item Time trends - declining
-    \item Mobile $\approx$ Desktop in revenues and transactions
-\end{itemize}
-\end{itemize}
+\frame{\frametitle{Conversion rate by device}
+
+In mobile users, small positive effect (+0.015 or 3.3\%), but not significant
+
+To achieve significance, we would need 1.796.940 mobile sessions ($<$ 1 more month) 
+
+
+\begin{figure}
+    \caption{}
+    \vskip -10mm
+    \resizebox{\textwidth}{!}{\includegraphics{../graphs/graph_cr_device.pdf}}
+    \label{graph_cr}
+\end{figure}
 }
 
 
+
+\section{Conclusion}
+\frame{\frametitle{Conclusions}
+\begin{itemize}
+    \item Effect of test on CR is positive, but not significant
+    \begin{itemize}
+        \item Total effect could be significant with more time (4 more months)
+        \item Effect is most positive on mobile users
+    \end{itemize}
+    \item But don't forget about revenues
+    \begin{itemize}
+        \item Treatment group has 30.000 or 0.5\% lower revenues
+        \item If we extended the test, revenues could decline by 150.000
+        \item In mobile users, treatment reduces revenues by 4.6\% 
+    \end{itemize}
+    \item Recommendation
+    \begin{itemize}
+        \item Look for other treatments that are more effective
+        \item Focus on effect of treatment on mobile users
+    \end{itemize}
+\end{itemize}
+}
 
 \frame[c]{\frametitle{}
 \centering

@@ -2,17 +2,7 @@
 # TOP COMMANDS
 ###########################
 # create empty session
-def clear_all():
-    """Clears all the variables from the workspace."""
-    gl = globals().copy()
-    for var in gl:
-        if var[0] == '_': continue
-        if 'func' in str(globals()[var]): continue
-        if 'module' in str(globals()[var]): continue
-
-        del globals()[var]
-if __name__ == "__main__":
-    clear_all()
+globals().clear()
 
 # load libraries
 import pandas as pd
@@ -20,6 +10,7 @@ import numpy as np
 import os
 import statsmodels.formula.api as smf
 from pystout import pystout
+from statsmodels.iolib import summary2
 
 # beginning commands
 pd.set_option('display.float_format', str) # drop scientific notation
@@ -37,13 +28,12 @@ tables = "tables/"
 
 df_0 = pd.read_csv(os.path.join(main_dir,data_files,"ab_test.csv"))
 
+
 ###########################
 # Regressions
 ###########################
 
 # model 0 baseline - main effect
-# model1 = smf.ols(formula=formula='price ~ mpg + displacement + C(foreign)', data=dta).fit()
-
 lm_sessions_0 = smf.ols(formula="sessions ~ deviceCategory + treat", data = df_0).fit()
 lm_pageviews_0 = smf.ols(formula="pageviews ~ deviceCategory + treat", data = df_0).fit()
 lm_unique_0 = smf.ols(formula="uniquePageviews ~ deviceCategory + treat", data = df_0).fit()

@@ -1,0 +1,233 @@
+\documentclass[xcolor=table]{beamer}
+
+% \rowcolors{1}{gray!30}{gray!10}
+
+\usetheme{Boadilla}
+\usecolortheme{dolphin}
+\useoutertheme[subsection=false]{smoothbars}
+
+\setbeamercolor{frametitle}{fg = black, bg = white} 
+\setbeamercolor{palette primary}{use=structure,fg=white,bg=structure.fg!60!white}
+\setbeamercolor{palette secondary}{use=structure,fg=white,bg=structure.fg!90!white}
+\setbeamercolor{palette tertiary}{use=structure,fg=white,bg=structure.fg!120!white}
+\setbeamercolor{palette quaternary}{use=structure,fg=black,bg=white} %Top bar
+
+\setbeamertemplate{enumerate subitem}[circle]%
+\renewcommand{\insertsubenumlabel}{\alph{enumii}}
+
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage[table]{xcolor}
+\definecolor{lightgray}{gray}{0.9}
+
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    linkcolor=blue
+}
+
+\footnotesize \let\small\footnotesize
+
+\author{Jonathan P. Latner, PhD}
+\title{A/B test results}
+\date{\today}
+
+\beamertemplatenavigationsymbolsempty 
+\setbeamerfont{page number in head/foot}{size=\tiny}
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{section in toc}[sections numbered]
+
+\begin{document}
+
+\frame{\frametitle{ }
+\titlepage
+\thispagestyle{empty}
+}
+
+\frame{\frametitle{Overview}
+\begin{itemize}
+    \item A/B test conducted during the month January, 2019
+    \item Sample size 743 ($\approxeq$ 24 individuals per day)
+    \item Results suggest no effect of treatment on outcomes
+\end{itemize}
+}
+
+\frame{\frametitle{A/B test sample}
+Size = 743 (even split by treatment)
+
+\begin{figure}
+    \caption{Treatment}
+    \resizebox{\textwidth}{!}{\includegraphics{../graphs/plot_treatment.pdf}}
+    \label{plot_treatment}
+\end{figure}
+}
+
+\frame{\frametitle{Time period}
+One month, January 2019
+
+$\approxeq$ 12 individuals per day
+\begin{figure}
+    \caption{Treatment by date}
+    \resizebox{\textwidth}{!}{\includegraphics{../graphs/plot_treatment_date.pdf}}
+    \label{plot_treatment_date}
+\end{figure}
+}
+
+\frame{\frametitle{Descriptives - numerical variable}
+No difference between treatment and control
+
+\begin{figure}
+    \caption{Numerical variables by treatment}
+    \resizebox{\textwidth}{!}{\includegraphics{../graphs/plot_numerical.pdf}}
+    \label{plot_numerical}
+\end{figure}
+}
+
+\frame{\frametitle{Descriptives - categorical variable}
+No difference between treatment and control
+
+\begin{figure}
+    \caption{Categorical variable (device) by treatment}
+    \resizebox{\textwidth}{!}{\includegraphics{../graphs/plot_categorical.pdf}}
+    \label{plot_category}
+\end{figure}
+}
+
+\frame{\frametitle{Descriptives - crosstab numerical and control}
+Difference between devices
+\begin{itemize}
+    \item Mobile has higher pageviews, uniqeviews, and sessions
+    \item Tablet has lower revenues and transactions
+    \item Desktop has slightly higher revenues than mobiles
+\end{itemize}
+
+But, no difference between treatment and control
+
+\begin{figure}
+    \caption{Numerical variables by device and treatment}
+    \resizebox{\textwidth}{!}{\includegraphics{../graphs/plot_interaction_twoway.pdf}}
+    \label{plot_interaction_twoway}
+\end{figure}
+}
+
+\frame{\frametitle{What about a new variable?}
+Avg. revenue per transaction = revenue/transaction
+
+Among tablet users, treatment appears to reduce outliers, but not average
+
+\begin{figure}
+    \caption{Average revenue per transaction by device and treatment}
+    \resizebox{\textwidth}{!}{\includegraphics{../graphs/plot_new.pdf}}
+    \label{plot_new}
+\end{figure}
+}
+
+
+\frame{\frametitle{Time trends}
+
+Variables are declining over time by device category
+
+No difference trends over time by treatment
+
+\begin{figure}
+    \caption{Numerical variables over time by device and treatment}
+    \resizebox{\textwidth}{!}{\includegraphics{../graphs/plot_time_trend.pdf}}
+    \label{plot_time_trend}
+\end{figure}
+}
+
+% \frame{\frametitle{Pystout} 
+
+%     \begin{table}[!h]
+%     \caption{Parameter estimates of effect of device and treatment on outcomes}
+%         \begin{center}
+%             \resizebox{.75\textwidth}{!}{\input{../tables/test_table.tex}}
+%             \label{test_table.tex}
+%         \end{center}
+%     \end{table}
+% }
+
+\frame{\frametitle{Regressions} 
+Model 0 only has main effect of device category and treatment
+
+Model 1 adds an interaction between device category and treatment
+
+Regression models confirm descriptive statistics
+
+There is a main effect of Device category, but no effect of treatment 
+
+
+    \begin{table}[!h]
+    \caption{Parameter estimates of effect of device and treatment on outcomes}
+        \begin{center}
+            \resizebox{\textwidth}{!}{\input{../tables/table_regression.tex}}
+            \label{table_regression.tex}
+        \end{center}
+    \end{table}
+}
+
+\frame{\frametitle{Regressions} 
+Model 2 adds main effect of date
+
+Model 3 adds an interaction with date
+
+Regression models confirm descriptive statistics (declining trends)
+
+Tablets trends are still negative: interaction with date $<$ main effect
+
+    \begin{table}[!h]
+    \caption{Parameter estimates of effect of device and treatment on outcomes}
+        \begin{center}
+            \resizebox{\textwidth}{!}{\input{../tables/table_regression_date.tex}}
+            \label{table_regression_date.tex}
+        \end{center}
+    \end{table}
+}
+
+\frame{\frametitle{Questions}
+\begin{itemize}
+\item What conclusions do you have?
+\begin{itemize}
+    \item The experiment suggests little effect of treatment on outcome variables
+    \item Whatever treatment effect exists is smaller than device category
+\end{itemize}
+\item What does this mean for us and our test?
+\begin{itemize}
+    \item The treatment has no effect, or \dots
+    \item The treatment is too small to have an effect
+\end{itemize}
+\item What should we do and how should we proceed?
+\begin{itemize}
+    \item Examine alternative outcome variables
+    \item Examine differences by demographic groups
+\end{itemize}
+\item Is there anything specific with regards to device categories?
+\begin{itemize}
+    \item Mobile has highest pageviews, uniqueviews, and sessions
+    \item Tablet has lowest revenues and transactions
+    \item Desktop has slightly higher revenues than mobiles (but not sig.)
+\end{itemize}
+\item Any other things you noticed or found interesting?
+\begin{itemize}
+    \item Time trends - declining
+    \item Mobile $\approx$ Desktop in revenues and transactions
+\end{itemize}
+\end{itemize}
+}
+
+
+
+\frame[c]{\frametitle{}
+\centering
+Thank you\\\
+}
+
+
+
+\end{document}
+
+
